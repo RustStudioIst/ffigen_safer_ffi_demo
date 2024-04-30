@@ -1,0 +1,31 @@
+[package]
+name = "rust"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = [
+    "staticlib", # Ensure it gets compiled as a (static) C library
+    "cdylib", # If you want a shared/dynamic C library (advanced)
+    #"lib", # For `generate-headers`, `examples/`, `tests/` etc.
+]
+
+#在写代码阶段，可以注释掉这个部分
+#[[bin]]
+#name = "generate-headers"
+#required-features = ["headers"]  # Do not build unless generating headers.
+
+[dependencies]
+# Use `cargo add` or `cargo search` to find the latest values of x.y.z.
+# For instance:
+#   cargo add safer-ffi
+# https://crates.io/crates/safer-ffi
+safer-ffi.version = "0.1.7"
+safer-ffi.features = [] # you may add some later on.
+
+[features]
+# If you want to generate the headers, use a feature-gate
+# to opt into doing so:
+headers = ["safer-ffi/headers"]

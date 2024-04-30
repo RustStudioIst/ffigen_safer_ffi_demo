@@ -1,0 +1,1 @@
+cargo test --package rust --lib generate_headers --features headers
